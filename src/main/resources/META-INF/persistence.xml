@@ -5,8 +5,8 @@
     <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Combos</class>
     <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Company</class>
     <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Customer</class>
-    <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.MarketingTree</class>
     <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Members</class>
+    <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Points</class>
     <class>edu.iit.sat.itmd4515.jsharma3.mp3.MLM.Products</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=convertToNull"/>

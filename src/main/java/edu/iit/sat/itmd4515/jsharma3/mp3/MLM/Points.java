@@ -13,6 +13,6 @@ import javax.persistence.Entity;
  * @author Jay
  */
 @Entity
-public class MarketingTree extends Entities implements Serializable{
+public class Points extends Entities implements Serializable{
     
 }

@@ -58,22 +58,13 @@ public abstract class AbstractJPATest {
         m.setPassword("1234");
         m.setReferance_code("jsharma3");
         
-        Members m1 =new Members();
-        m1.setAdmin_member(false);
-        m1.setBirthDate(new GregorianCalendar(1993, 11, 25).getTime());
-        m1.setEmail("jay@google.com");
-        m1.setFirstName("Ajay");
-        m1.setLastName("Shah");
-        m1.setPassword("5678");
-        m1.setReferance_code("ajay007");
-        
         Customer c =new Customer();
         c.setBirthDate(new GregorianCalendar(1989, 11, 25).getTime());
         c.setEmail("param@google.com");
         c.setFirstName("Param");
         c.setLastName("Saini");
         c.setPassword("doc123");
-        c.setMemberref_id("1");
+        c.setMemberref_code("jsharma3");
         
         Customer c1 =new Customer();
         c1.setBirthDate(new GregorianCalendar(1989, 11, 25).getTime());
@@ -81,75 +72,69 @@ public abstract class AbstractJPATest {
         c1.setFirstName("Param");
         c1.setLastName("Saini");
         c1.setPassword("doc123");
-        c1.setMemberref_id("2");
+        c1.setMemberref_code("jsharma3");
         
         Company cm = new Company();
-        cm.setName("Pepsi");
+        cm.setName("Pepsico");
         cm.setProductName("Sprite");
         cm.setProductType("Soda");
         
         Combos cb = new Combos();
         cb.setCombo_name("Soda");
-        cb.setCombo_items("Sprite,Coco Cola,Pepsi");
+        cb.setCombo_items("CocoCola,Sprite,Pepsi");
         cb.setCombo_price("$5");
         cb.setSaving("$1.10");
         cb.setCombo_availibility("5");
-        
-        Combos cb1 = new Combos();
-        cb1.setCombo_name("Candy");
-        cb1.setCombo_items("Sneakers,Kit Kate,Reers");
-        cb1.setCombo_price("$3");
-        cb1.setSaving("$0.50");
-        cb1.setCombo_availibility("2");
         
         Products pc = new Products();
         pc.setProduct_name("Pepsi");
         pc.setProduct_weight("350ml");
         pc.setProduct_price("$1.90");
         pc.setProduct_availibility("15");
+        pc.setProduct_type("Soda");
         
         Products pc1 = new Products();
         pc1.setProduct_name("Sprite");
         pc1.setProduct_weight("350ml");
         pc1.setProduct_price("$1.90");
         pc1.setProduct_availibility("30");
+        pc1.setProduct_type("Soda");
         
         Products pc2 = new Products();
-        pc2.setProduct_name("Coco-Cola");
+        pc2.setProduct_name("CocoCola");
         pc2.setProduct_weight("350ml");
         pc2.setProduct_price("$1.90");
         pc2.setProduct_availibility("5");
+        pc2.setProduct_type("Soda");
         
-        Products pc3 = new Products();
-        pc3.setProduct_name("Sneakers");
-        pc3.setProduct_weight("10g");
-        pc3.setProduct_price("$1.10");
-        pc3.setProduct_availibility("25");
+        cm.getProducts().add(pc);
+        pc.setCompany(cm);
+        cm.getProducts().add(pc1);
+        pc1.setCompany(cm);        
+        cm.getProducts().add(pc2);
+        pc2.setCompany(cm);
         
-        Products pc4 = new Products();
-        pc4.setProduct_name("Kit-Kate");
-        pc4.setProduct_weight("10g");
-        pc4.setProduct_price("$1.10");
-        pc4.setProduct_availibility("17");
         
-        Products pc5 = new Products();
-        pc5.setProduct_name("Reers");
-        pc5.setProduct_weight("15g");
-        pc5.setProduct_price("$1.10");
-        pc5.setProduct_availibility("12");
+        cb.getProducts().add(pc);
+        pc.getCombos().add(cb);
+        cb.getProducts().add(pc1);
+        pc1.getCombos().add(cb);
+        cb.getProducts().add(pc2);
+        pc2.getCombos().add(cb);
+        
+        m.getCustomer().add(c);
+        c.getMembers().add(m);
+        m.getCustomer().add(c1);
+        c1.getMembers().add(m);
         
         em.persist(m);
-        em.persist(m1);
         em.persist(cm);
         em.persist(c);
+        em.persist(c1);
         em.persist(cb);
-        em.persist(cb1);
         em.persist(pc);
         em.persist(pc1);
         em.persist(pc2);
-        em.persist(pc3);
-        em.persist(pc4);
-        em.persist(pc5);
         tx.commit();   
     }
     

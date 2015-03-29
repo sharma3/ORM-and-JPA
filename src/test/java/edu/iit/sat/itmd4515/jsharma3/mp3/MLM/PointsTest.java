@@ -5,15 +5,20 @@
  */
 package edu.iit.sat.itmd4515.jsharma3.mp3.MLM;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Jay
  */
-public class MemberTest extends AbstractJPATest {
+public class PointsTest extends AbstractJPATest {
     
-    public MemberTest() {
+    public PointsTest() {
     }
     
     @Test
@@ -32,4 +37,5 @@ public class MemberTest extends AbstractJPATest {
     public void testDelete() {
     
     }
+    
 }

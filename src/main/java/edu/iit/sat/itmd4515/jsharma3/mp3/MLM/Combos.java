@@ -6,7 +6,11 @@
 package edu.iit.sat.itmd4515.jsharma3.mp3.MLM;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -15,9 +19,16 @@ import javax.persistence.Entity;
 @Entity
 public class Combos extends Entities implements Serializable {
 
+    @ManyToMany(mappedBy = "combo", cascade = CascadeType.PERSIST)
+    private List<Products> products = new ArrayList<>();
+
     public Combos() {
     }
- 
+    
+    public List<Products> getProducts() {
+        return products;
+    }
+
     private String combo_name;
     public String getCombo_name() {
         return combo_name;
@@ -58,5 +69,11 @@ public class Combos extends Entities implements Serializable {
         this.saving = saving;
     }
 
-   
+   @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Combos{" + "name=").append(combo_name).append('}');
+        return sb.toString();
+    }
 }

@@ -5,6 +5,7 @@
  */
 package edu.iit.sat.itmd4515.jsharma3.mp3.MLM;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,7 +21,6 @@ public class CustomerTest extends AbstractJPATest {
     
     public CustomerTest() {
     }
-    
     @Test
     public void testCreate() {
     
@@ -36,5 +36,5 @@ public class CustomerTest extends AbstractJPATest {
     @Test
     public void testDelete() {
     
-    }
+    }    
 }

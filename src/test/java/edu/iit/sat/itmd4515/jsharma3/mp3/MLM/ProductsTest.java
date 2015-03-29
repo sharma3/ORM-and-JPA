@@ -5,16 +5,23 @@
  */
 package edu.iit.sat.itmd4515.jsharma3.mp3.MLM;
 
+import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author Jay
  */
-public class ProductsTest {
+public class ProductsTest extends AbstractJPATest {
     
     public ProductsTest() {
     }
+    
     @Test
     public void testCreate() {
     
@@ -31,4 +38,5 @@ public class ProductsTest {
     public void testDelete() {
     
     }
+    
 }

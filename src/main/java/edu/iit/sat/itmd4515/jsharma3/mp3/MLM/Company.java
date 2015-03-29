@@ -6,7 +6,10 @@
 package edu.iit.sat.itmd4515.jsharma3.mp3.MLM;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -14,9 +17,15 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Company extends Entities implements Serializable{
+    
+    @OneToMany(mappedBy = "company")
+    private List<Products> products = new ArrayList<>();
+
     public Company() {
     }
-    
+    public List<Products> getProducts() {
+        return products;
+    }
     private String name;
     public String getName() {
         return name;
@@ -41,4 +50,11 @@ public class Company extends Entities implements Serializable{
         this.productType = productType;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        sb.append("\n\t");
+        sb.append("Company{name=").append(productType).append('}');
+        return sb.toString();
+    }
 }
