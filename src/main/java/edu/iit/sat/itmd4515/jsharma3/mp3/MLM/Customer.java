@@ -12,20 +12,27 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Jay
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Customer.findById", query = "select c from Customer c where c.id = :id "),
+    @NamedQuery(name = "Customer.findByAll", query = "select c from Customer c "),
+    @NamedQuery(name = "Customer.findByRFcode", query = "select c from Customer c where c.memberref_code = :memberref_code ")
+})
 public class Customer extends Person implements Serializable{
 
     
     
     @ManyToMany
     @JoinTable(name = "marketing_tree",
-            joinColumns = @JoinColumn(name = "member_id"),
-            inverseJoinColumns = @JoinColumn(name = "customer_id"))
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id"))
     
     private List<Members> member = new ArrayList<>();
 

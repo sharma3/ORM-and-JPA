@@ -40,7 +40,7 @@ public abstract class Person extends Entities {
         this.lastName = lastName;
     }
 
-    private String email;
+    String email;
     public String getEmail() {
         return email;
     }

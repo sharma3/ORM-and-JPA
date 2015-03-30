@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -16,6 +18,11 @@ import javax.persistence.OneToMany;
  * @author Jay
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Company.findById", query = "select cm from Company cm where cm.id = :id "),
+    @NamedQuery(name = "Company.findByAll", query = "select cm from Company cm "),
+    @NamedQuery(name = "Company.findByName", query = "select cm from Company cm where cm.name = :name")
+})
 public class Company extends Entities implements Serializable{
     
     @OneToMany(mappedBy = "company")
@@ -54,7 +61,7 @@ public class Company extends Entities implements Serializable{
     public String toString() {
         StringBuilder sb = new StringBuilder(super.toString());
         sb.append("\n\t");
-        sb.append("Company{name=").append(productType).append('}');
+        sb.append("Product{type=").append(productType).append('}');
         return sb.toString();
     }
 }

@@ -13,12 +13,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Jay
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Products.findById", query = "select p from Products p where p.id = :id "),
+    @NamedQuery(name = "Products.findByAll", query = "select p from Products p "),
+    @NamedQuery(name = "Products.findByName", query = "select p from Products p where p.product_name = :product_name ")
+})
 public class Products extends Entities implements Serializable {
 
     @ManyToOne

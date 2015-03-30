@@ -11,12 +11,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Jay
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Combos.findById", query = "select cb from Combos cb where cb.id = :id "),
+    @NamedQuery(name = "Combos.findByAll", query = "select cb from Combos cb "),
+    @NamedQuery(name = "Combos.findByName", query = "select cb from Combos cb where cb.combo_name = :combo_name ")
+})
+
 public class Combos extends Entities implements Serializable {
 
     @ManyToMany(mappedBy = "combo", cascade = CascadeType.PERSIST)

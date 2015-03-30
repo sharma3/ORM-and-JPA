@@ -11,9 +11,11 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,18 +26,32 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Members.findById", query = "select m from Members m where m.id = :id "),
-    @NamedQuery(name = "Members.findByAll", query = "select m from Members m ")
+    @NamedQuery(name = "Members.findByAll", query = "select m from Members m "),
+    @NamedQuery(name = "Members.findByReferance", query = "select m from Members m where m.referance_code = :referance_code ")
 })
 public class Members extends Person implements Serializable{
 
-    @ManyToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+    @OneToOne
+    @JoinColumn(name = "Points")
+    private Points pnt;
+    
+    @ManyToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
     private List<Customer> customer = new ArrayList<>();
     private boolean admin_member;
+    
     
     public List<Customer> getCustomer() {
         return customer;
     }
+    
+    public Points getPnt() {
+        return pnt;
+    }
 
+    public void setPnt(Points pnt) {
+        this.pnt = pnt;
+    }
+    
     public boolean isAdmin_member() {
         return admin_member;
     }
@@ -54,12 +70,5 @@ public class Members extends Person implements Serializable{
     public Members() {
     }
     
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder(super.toString());
-        sb.append("\n\t");
-        sb.append("Members{" + "name=").append(referance_code).append('}');
-        return sb.toString();
-    }
     
 }

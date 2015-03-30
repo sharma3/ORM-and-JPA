@@ -68,10 +68,10 @@ public abstract class AbstractJPATest {
         
         Customer c1 =new Customer();
         c1.setBirthDate(new GregorianCalendar(1989, 11, 25).getTime());
-        c1.setEmail("param@google.com");
-        c1.setFirstName("Param");
-        c1.setLastName("Saini");
-        c1.setPassword("doc123");
+        c1.setEmail("ajay@google.com");
+        c1.setFirstName("Ajay");
+        c1.setLastName("Shah");
+        c1.setPassword("imp123");
         c1.setMemberref_code("jsharma3");
         
         Company cm = new Company();
@@ -107,14 +107,20 @@ public abstract class AbstractJPATest {
         pc2.setProduct_availibility("5");
         pc2.setProduct_type("Soda");
         
+        Points pt = new Points();
+        pt.setEmail("jaysharma@google.com");
+        pt.setPoint("2000");
+        
         cm.getProducts().add(pc);
         pc.setCompany(cm);
         cm.getProducts().add(pc1);
         pc1.setCompany(cm);        
         cm.getProducts().add(pc2);
         pc2.setCompany(cm);
-        
-        
+      /*  
+        pt.getMembers().add(m);
+        m.setPnt(pt);
+        */
         cb.getProducts().add(pc);
         pc.getCombos().add(cb);
         cb.getProducts().add(pc1);
@@ -126,7 +132,7 @@ public abstract class AbstractJPATest {
         c.getMembers().add(m);
         m.getCustomer().add(c1);
         c1.getMembers().add(m);
-        
+       
         em.persist(m);
         em.persist(cm);
         em.persist(c);
@@ -135,6 +141,7 @@ public abstract class AbstractJPATest {
         em.persist(pc);
         em.persist(pc1);
         em.persist(pc2);
+        em.persist(pt);
         tx.commit();   
     }
     
@@ -145,8 +152,33 @@ public abstract class AbstractJPATest {
 
     private void removeTestData() {
         
-        
         tx.begin();
+
+        for(Products p : em.createNamedQuery("Products.findAll", Products.class).getResultList()){
+            em.remove(p);
+        }
+
+        for(Members m : em.createNamedQuery("Members.findAll", Members.class).getResultList()){
+            em.remove(m);
+        }
+
+        for(Customer c : em.createNamedQuery("Customer.findAll", Customer.class).getResultList()){
+            em.remove(c);
+        }
+
+        for(Combos cb : em.createNamedQuery("Combos.findAll", Combos.class).getResultList()){
+            em.remove(cb);
+        }
+        
+        for(Points pt : em.createNamedQuery("Points.findAll", Points.class).getResultList()){
+            em.remove(pt);
+        }
+        
+        for(Company cm : em.createNamedQuery("Company.findAll", Company.class).getResultList()){
+            em.remove(cm);
+        }
+
         tx.commit();
+    
     }
 }
